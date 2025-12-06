@@ -83,7 +83,8 @@ public:
         }
 
         int32_t error;
-        _zip = zip_open(std::string(path).c_str(), zipOpenMode, &error);
+        const std::string pathCopy(path);
+        _zip = zip_open(pathCopy.c_str(), zipOpenMode, &error);
         if (_zip == nullptr)
         {
             throw IOException("Unable to open zip file.");
