@@ -1,0 +1,5 @@
+# TSAN_OPTIONS=halt_on_error=1 suppressions=/home/virtual/dev/OpenRCT2/tsan_suppressions.txt
+
+race:libpulsecommon*.so
+
+race:libgallium-*.so
