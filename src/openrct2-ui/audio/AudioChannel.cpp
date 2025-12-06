@@ -28,20 +28,20 @@ namespace OpenRCT2::Audio
         SpeexResamplerState* _resampler = nullptr;
 
         MixerGroup _group = MixerGroup::Sound;
-        double _rate = 0;
+        std::atomic<double> _rate = 0;
         uint64_t _offset = 0;
         int32_t _loop = 0;
 
-        int32_t _volume = 1;
-        float _volume_l = 0.f;
-        float _volume_r = 0.f;
+        std::atomic<int32_t> _volume = 1;
+        std::atomic<float> _volume_l = 0.f;
+        std::atomic<float> _volume_r = 0.f;
         float _oldvolume_l = 0.f;
         float _oldvolume_r = 0.f;
         int32_t _oldvolume = 0;
-        float _pan = 0;
+        std::atomic<float> _pan = 0;
 
-        bool _stopping = false;
-        bool _done = true;
+        std::atomic<bool> _stopping = false;
+        std::atomic<bool> _done = true;
         bool _deleteondone = false;
 
     public:

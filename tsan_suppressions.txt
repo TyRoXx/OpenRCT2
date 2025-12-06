@@ -3,3 +3,5 @@
 race:libpulsecommon*.so
 
 race:libgallium-*.so
+
+race:libc.so.6
