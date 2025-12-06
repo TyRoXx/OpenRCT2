@@ -314,6 +314,9 @@ target_link_options(libopenrct2 PUBLIC $<$<BOOL:${ENABLE_ASAN}>:-fsanitize=addre
 target_compile_options(libopenrct2 PUBLIC $<$<BOOL:${ENABLE_UBSAN}>:-fsanitize=undefined>)
 target_link_options(libopenrct2 PUBLIC  $<$<BOOL:${ENABLE_UBSAN}>:-fsanitize=undefined>)
 
+target_compile_options(libopenrct2 PUBLIC $<$<BOOL:${ENABLE_TSAN}>:-fsanitize=thread>)
+target_link_options(libopenrct2 PUBLIC $<$<BOOL:${ENABLE_TSAN}>:-fsanitize=thread>)
+
 if (CMAKE_LIBRARY_ARCHITECTURE MATCHES "arm-linux-gnueabihf")
     message(STATUS "Linking to armhf libs; adding libatomic")
     target_link_libraries(libopenrct2 atomic)
