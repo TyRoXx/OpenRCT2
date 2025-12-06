@@ -35,7 +35,7 @@ namespace OpenRCT2::Audio
         SDL_AudioDeviceID _deviceId = 0;
         AudioFormat _outputFormat = {};
         std::list<std::shared_ptr<ISDLAudioChannel>> _channels;
-        float _volume = 1.0f;
+        std::atomic<float> _volume = 1.0f;
         float _adjustSoundVolume = 0.0f;
         float _adjustMusicVolume = 0.0f;
         uint8_t _settingSoundVolume = 0xFF;
