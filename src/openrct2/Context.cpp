@@ -543,8 +543,10 @@ namespace OpenRCT2
                 SetActiveScene(preloaderScene);
 
                 // TODO: preload the title scene in another (parallel) job.
-                preloaderScene->AddJob([this]() { InitialiseRepositories(); });
-                preloaderScene->AddJob([this]() { InitialiseScriptEngine(); });
+                // preloaderScene->AddJob([this]() { InitialiseRepositories(); });
+                InitialiseRepositories();
+                InitialiseScriptEngine();
+                //preloaderScene->AddJob([this]() { InitialiseScriptEngine(); });
             }
             else
             {
