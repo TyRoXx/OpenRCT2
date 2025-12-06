@@ -274,7 +274,7 @@ void GfxDrawStringLeftCentred(
 /**
  * Changes the palette so that the next character changes colour
  */
-static void ColourCharacter(TextColour colour, bool withOutline, uint8_t* palette_pointer)
+static void ColourCharacter(TextColour colour, bool withOutline, TextPalette& palette_pointer)
 {
     int32_t colour32 = 0;
     const G1Element* g1 = GfxGetG1Element(SPR_TEXT_PALETTE);
@@ -299,7 +299,7 @@ static void ColourCharacter(TextColour colour, bool withOutline, uint8_t* palett
  * Changes the palette so that the next character changes colour
  * This is specific to changing to a predefined window related colour
  */
-static void ColourCharacterWindow(colour_t colour, bool withOutline, uint8_t* palette_pointer)
+static void ColourCharacterWindow(colour_t colour, bool withOutline, TextPalette& palette_pointer)
 {
     int32_t eax;
 
@@ -754,7 +754,7 @@ static void TTFProcessInitialColour(ColourWithFlags colour, TextDrawInfo* info)
         if (!colour.flags.has(ColourFlag::inset))
         {
             ColourCharacterWindow(
-                colour.colour, info->colourFlags.has(ColourFlag::withOutline), reinterpret_cast<uint8_t*>(&info->palette));
+                colour.colour, info->colourFlags.has(ColourFlag::withOutline), info->palette);
         }
         else
         {
@@ -814,10 +814,9 @@ void TTFDrawString(
         info.textDrawFlags.set(TextDrawFlag::noFormatting);
     }
 
-    std::memcpy(info.palette, gTextPalette, sizeof(info.palette));
+    info.palette = TextPalette{};
     TTFProcessInitialColour(colour, &info);
     TTFProcessString(rt, text, &info);
-    std::memcpy(gTextPalette, info.palette, sizeof(info.palette));
 
     rt.lastStringPos = { info.x, info.y };
 }
@@ -873,10 +872,9 @@ void GfxDrawStringWithYOffsets(
         info.textDrawFlags.set(TextDrawFlag::ttf);
     }
 
-    std::memcpy(info.palette, gTextPalette, sizeof(info.palette));
+    info.palette = TextPalette{};
     TTFProcessInitialColour(colour, &info);
     TTFProcessString(rt, text, &info);
-    std::memcpy(gTextPalette, info.palette, sizeof(info.palette));
 
     rt.lastStringPos = { info.x, info.y };
 }

@@ -83,11 +83,6 @@ ImageId gPickupPeepImage;
 int32_t gPickupPeepX;
 int32_t gPickupPeepY;
 
-// Originally 0x9ABE04
-uint8_t gTextPalette[0x8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 bool gPaintForceRedraw{ false };
 
 enum

@@ -14,6 +14,7 @@
 #include "../interface/ColourWithFlags.h"
 
 #include <cstdint>
+#include <array>
 
 enum class FontStyle : uint8_t;
 enum class TextDarkness : uint8_t;
@@ -27,6 +28,8 @@ enum class TextDrawFlag : uint8_t
 };
 using TextDrawFlags = FlagHolder<uint8_t, TextDrawFlag>;
 
+using TextPalette = std::array<uint8_t, 8>;
+
 struct TextDrawInfo
 {
     int32_t startX{};
@@ -38,7 +41,7 @@ struct TextDrawInfo
     TextDrawFlags textDrawFlags{};
     OpenRCT2::ColourFlags colourFlags{};
     TextDarkness darkness{};
-    uint8_t palette[8]{};
+    TextPalette palette{};
     FontStyle fontStyle{};
     const int8_t* yOffset{};
 };
