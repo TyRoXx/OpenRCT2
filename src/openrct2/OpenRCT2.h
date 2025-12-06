@@ -10,6 +10,7 @@
 #pragma once
 
 #include "core/StringTypes.h"
+#include <atomic>
 
 enum class PromptMode : uint8_t;
 
@@ -71,6 +72,6 @@ namespace OpenRCT2
 } // namespace OpenRCT2
 
 extern uint32_t gCurrentDrawCount;
-extern LegacyScene gLegacyScene;
+extern std::atomic<LegacyScene> gLegacyScene;
 extern uint32_t gScreenAge;
 extern PromptMode gSavePromptMode;

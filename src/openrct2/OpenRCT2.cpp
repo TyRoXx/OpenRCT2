@@ -27,7 +27,7 @@ bool gOpenRCT2ShowChangelog;
 bool gOpenRCT2SilentBreakpad;
 
 uint32_t gCurrentDrawCount = 0;
-LegacyScene gLegacyScene;
+std::atomic<LegacyScene> gLegacyScene;
 uint32_t gScreenAge;
 PromptMode gSavePromptMode;
 
@@ -35,7 +35,7 @@ bool gSilentReplays = false;
 
 bool isInEditorMode()
 {
-    return EnumValue(gLegacyScene) >= EnumValue(LegacyScene::scenarioEditor);
+    return EnumValue(gLegacyScene.load()) >= EnumValue(LegacyScene::scenarioEditor);
 }
 
 bool isInTrackDesignerOrManager()
